@@ -21,6 +21,9 @@ completions/
 canvas/
 cron/
 
+# Agent runtime data (sessions, agent configs with credentials)
+agents/
+
 # Runtime state files
 update-check.json
 exec-approvals.json
@@ -32,8 +35,14 @@ exec-approvals.sock
 *.swo
 *~
 
+# Claude Code local settings
+.claude/
+
 # Node modules (for plugin development)
 node_modules/
 
 # Environment files with actual secrets (template is committed)
 .env
+
+# Workspace has its own git repository
+workspace/
