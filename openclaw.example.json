@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.8",
+    "lastTouchedAt": "YYYY-MM-DDTHH:MM:SS.sssZ"
+  },
+  "wizard": {
+    "lastRunAt": "YYYY-MM-DDTHH:MM:SS.sssZ",
+    "lastRunVersion": "2026.3.8",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "custom-coding-dashscope-aliyuncs-com": {
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/apps/anthropic",
+        "apiKey": "${DASHSCOPE_API_KEY}",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "qwen3.5-plus",
+            "name": "qwen3.5-plus (Custom Provider)",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 16000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "custom-coding-dashscope-aliyuncs-com/qwen3.5-plus"
+      },
+      "models": {
+        "custom-coding-dashscope-aliyuncs-com/qwen3.5-plus": {
+          "alias": "qwen3.5-plus"
+        }
+      },
+      "workspace": "/Users/fuhu_assistant/.openclaw/workspace",
+      "compilation": {
+        "mode": "safeguard"
+      }
+    }
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "kimi",
+        "apiKey": "${KIMI_SEARCH_API_KEY}",
+        "kimi": {
+          "apiKey": "${KIMI_SEARCH_API_KEY}"
+        }
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        },
+        "bootstrap-extra-files": {
+          "enabled": true
+        },
+        "boot-md": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_your-app-id-here",
+      "appSecret": "${FEISHU_APP_SECRET}",
+      "connectionMode": "websocket",
+      "domain": "feishu",
+      "groupPolicy": "disabled",
+      "dmPolicy": "pairing",
+      "threadSession": true,
+      "footer": {
+        "elapsed": true,
+        "status": true
+      }
+    }
+  },
+  "gateway": {
+    "port": 36789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "${OPENCLAW_GATEWAY_TOKEN}",
+      "allowTailscale": true
+    },
+    "trustedProxies": [
+      "10.0.0.0/8",
+      "172.16.0.0/12",
+      "192.168.0.0/16",
+      "100.64.0.0/10"
+    ],
+    "tailscale": {
+      "mode": "serve",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "allow": [
+      "feishu-openclaw-plugin"
+    ],
+    "load": {
+      "paths": [
+        "/usr/local/lib/node_modules/openclaw/extensions/feishu"
+      ]
+    },
+    "entries": {
+      "feishu": {
+        "enabled": false
+      },
+      "feishu-openclaw-plugin": {
+        "enabled": true
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+# OpenClaw - Secure Configuration Backup
+# Exclude sensitive files that contain API keys, secrets, and runtime data
+
+# Main configuration with credentials
+openclaw.json
+
+# Backup files
+*.bak
+*.bak.*
+openclaw.json.bak*
+
+# Sensitive directories containing credentials and identity data
+credentials/
+devices/
+identity/
+
+# Runtime and session data
+memory/
+logs/
+completions/
+canvas/
+cron/
+
+# Runtime state files
+update-check.json
+exec-approvals.json
+exec-approvals.sock
+
+# IDE and editor files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Node modules (for plugin development)
+node_modules/
+
+# Environment files with actual secrets (template is committed)
+.env
